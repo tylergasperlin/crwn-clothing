@@ -5,22 +5,40 @@ import {Route, Switch} from 'react-router-dom'
 import ShopPage from './pages/shop/shop-component'
 import Header from './components/header/header-component'
 import SignInSignOutPqge from './pages/signin-signout/signin-singout-component'
+import {auth} from './firebase/firebase-utils'
 
 
-function App() {
-  return (
-    <div>
-      <Header></Header>
-        <Switch>
-          <Route exact path="/" component={HomePage}></Route>
-          <Route exact path="/shop" component={ShopPage}></Route>
-          <Route exact path="/signin" component={SignInSignOutPqge}></Route>
+class App extends React.Component {
+  constructor(){
+    super()
 
-        </Switch>
-    </div>
+    this.state = {
+      currentUser: null
+    }
+  }
 
- 
-  );
+  componentDidMount(){
+    auth.onAuthStateChanged(user => {
+      this.setState({currentUser:user})
+    })
+  }
+
+  render(){
+    return (
+      <div>
+        <Header></Header>
+          <Switch>
+            <Route exact path="/" component={HomePage}></Route>
+            <Route exact path="/shop" component={ShopPage}></Route>
+            <Route exact path="/signin" component={SignInSignOutPqge}></Route>
+  
+          </Switch>
+      </div>
+  
+   
+    );
+  }
+
 }
 
 export default App;
