@@ -4,7 +4,7 @@ import HomePage from './pages/homepage/homepage-component'
 import {Route, Switch} from 'react-router-dom'
 import ShopPage from './pages/shop/shop-component'
 import Header from './components/header/header-component'
-import SignInSignOutPqge from './pages/signin-signout/signin-singout-component'
+import SignInSignOutPqge from './pages/signin-signout/signin-signout-component'
 import {auth, createUserProfileDocument} from './firebase/firebase-utils'
 
 
@@ -31,8 +31,8 @@ class App extends React.Component {
               ...snapShot.data()
             
             }
-          }
-          )
+          })
+          console.log(this.state)
         })
       }
       this.setState({currentUser: userAuth})
