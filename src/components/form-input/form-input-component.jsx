@@ -3,7 +3,6 @@ import "./form-input-styles.scss";
 
 //name type value onchange all get passed to this componeent from signin-component
 const FormInput = ({ handleChange, label, ...otherProps }) => {
-  console.log(otherProps);
 
   return (
     <div className="group">
