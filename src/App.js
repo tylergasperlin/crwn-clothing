@@ -43,11 +43,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header currentUser={this.state.currentUser}></Header>
+        <Header/>
         <Switch>
-          <Route exact path="/" component={HomePage}></Route>
-          <Route exact path="/shop" component={ShopPage}></Route>
-          <Route exact path="/signin" component={SignInSignOutPqge}></Route>
+          <Route exact path="/" component={HomePage}/>
+          <Route exact path="/shop" component={ShopPage}/>
+          <Route exact path="/signin" component={SignInSignOutPqge}/>
         </Switch>
       </div>
     );
