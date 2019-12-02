@@ -6,10 +6,17 @@ import './collection-styles.scss'
 
 //we have access to match since the Collection page is within route in shop-component
 const CollectionPage = ({collection}) => {
+    console.log('colletionpage')
     console.log(collection)
+    const { title, items} = collection
     return(
         <div className='collection-page'>
-            <h2>COLLECTION PAGE</h2>
+            <h2 className='title'>{title}</h2>
+            <div className='items'>
+                {
+                    items.map(item => <CollectionItem key={item.id} item={item}/>)
+                }
+            </div>
         </div>
 
     )

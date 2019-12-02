@@ -1,14 +1,5 @@
 import {createSelector} from 'reselect'
 
-const COLLECTION_ID_MAP = {
-    //these correspond with tbe ids from the directory-reducer
-    hats: 1,
-    sneakers: 2,
-    jackets: 3,
-    women: 4, 
-    men: 5
-}
-
 const selectShop = state => state.shop;
 
 export const selectCollections = createSelector(
@@ -21,9 +12,6 @@ export const selectCollections = createSelector(
 //whatever uses this selector will need to pass state to the returned function
 export const selectCollection = collectionUrlParam => createSelector(
     [selectCollections],
-    //find collection id matching the url parameter of our collection id map
-    collections => collections.find(
-    collection => collection.id ===COLLECTION_ID_MAP[collectionUrlParam]
-    )
+    collections => collections[collectionUrlParam]
 
 )
