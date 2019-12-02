@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## To Deploy Use the Following:
+(base) tylers-mbp-2:crwn-clothing tyler$ git push heroku master
+
 ## Available Scripts
 
 In the project directory, you can run:
