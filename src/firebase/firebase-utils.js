@@ -1,16 +1,16 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
 
 const config = {
-  apiKey: "AIzaSyBfup_Jl7Snp3a54R5E4wOsGVi3FXxbaZc",
-  authDomain: "crwn-db-85798.firebaseapp.com",
-  databaseURL: "https://crwn-db-85798.firebaseio.com",
-  projectId: "crwn-db-85798",
-  storageBucket: "crwn-db-85798.appspot.com",
-  messagingSenderId: "534616453233",
-  appId: "1:534616453233:web:da8e155503a24b9eb0abd0",
-  measurementId: "G-Q99E8HV05Q"
+  apiKey: 'AIzaSyBfup_Jl7Snp3a54R5E4wOsGVi3FXxbaZc',
+  authDomain: 'crwn-db-85798.firebaseapp.com',
+  databaseURL: 'https://crwn-db-85798.firebaseio.com',
+  projectId: 'crwn-db-85798',
+  storageBucket: 'crwn-db-85798.appspot.com',
+  messagingSenderId: '534616453233',
+  appId: '1:534616453233:web:da8e155503a24b9eb0abd0',
+  measurementId: 'G-Q99E8HV05Q'
 };
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
@@ -30,7 +30,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         ...additionalData
       });
     } catch (error) {
-      console.error("error creating user", error.message);
+      console.error('error creating user', error.message);
     }
   }
   return userRef;
@@ -41,8 +41,13 @@ firebase.initializeApp(config);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
+export const addCollectionAndDocuments = (collectionKey, objectsToAdd) => {
+  const collectionRef = firestore.collection(collectionKey);
+  console.log(collectionRef);
+};
+
 const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: "select_account" });
+provider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export default firebase;
