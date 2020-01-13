@@ -41,9 +41,18 @@ firebase.initializeApp(config);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-export const addCollectionAndDocuments = (collectionKey, objectsToAdd) => {
+//use this to add new documents to firestore
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
   const collectionRef = firestore.collection(collectionKey);
-  console.log(collectionRef);
+  const batch = firestore.batch()
+  //foreach different than map in that it does is does not return a new array
+  objectsToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj)
+  });
+
+  return await batch.commit()
+
 };
 
 const provider = new firebase.auth.GoogleAuthProvider();
