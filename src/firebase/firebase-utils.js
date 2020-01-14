@@ -38,21 +38,46 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
 firebase.initializeApp(config);
 
+export const convertCollectionSnapshotToMap = collectionsSnapshot => {
+  const transformedCollection = collectionsSnapshot.docs.map(doc => {
+    const { title, items } = doc.data();
+    return {
+      //pass encodeUri = object = pass string an gives you back string that evrey url can read
+      //removes spaces
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items
+    };
+  });
+  console.log(transformedCollection)
+  //pass in initial object indicated by {} at the end of the method
+  //initial object goes into first new collection and sets the first value to title.tolowerccase = hats=hats.collection
+  //goes to  second object = jackets = jackets.jacketscollection
+  //this reduce makes it so that the titles within the object from firebase are the keys
+  return transformedCollection.reduce((accumulator,collection) =>{
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+  }, {})
+};
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 //use this to add new documents to firestore
-export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
   const collectionRef = firestore.collection(collectionKey);
-  const batch = firestore.batch()
+  const batch = firestore.batch();
   //foreach different than map in that it does is does not return a new array
   objectsToAdd.forEach(obj => {
     const newDocRef = collectionRef.doc();
-    batch.set(newDocRef, obj)
+    batch.set(newDocRef, obj);
   });
 
-  return await batch.commit()
-
+  return await batch.commit();
 };
 
 const provider = new firebase.auth.GoogleAuthProvider();
