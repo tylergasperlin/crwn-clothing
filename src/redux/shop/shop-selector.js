@@ -12,7 +12,7 @@ export const selectCollectionsForPreview = createSelector(
     //get array of items that we are trying to get
     //map the keys of collections ==mens/womens/hats/jackets
     //get value of collection object at the key
-    collections => Object.keys(collections).map(key=>collections[key])
+    collections => collections ? Object.keys(collections).map(key=>collections[key]) : []
 
 )
 
@@ -21,6 +21,6 @@ export const selectCollectionsForPreview = createSelector(
 //whatever uses this selector will need to pass state to the returned function
 export const selectCollection = collectionUrlParam => createSelector(
     [selectCollections],
-    collections => collections[collectionUrlParam]
+    collections => collections ? collections[collectionUrlParam] : null
 
 )
