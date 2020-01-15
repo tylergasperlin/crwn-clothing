@@ -17,9 +17,7 @@ class ShopPage extends React.Component {
     const collectionRef = firestore.collection('collections');
     this.unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
       const collectionsMap = convertCollectionSnapshotToMap(snapshot);
-      console.log(collectionsMap);
-
-      //updateCollections(collectionsMap)
+      updateCollections(collectionsMap)
     });
   }
 
@@ -28,7 +26,7 @@ class ShopPage extends React.Component {
     return (
       <div className='shop-page'>
         <Route exact path={`${match.path}`} component={CollectionsOverview} />
-        <Route
+        <Route  
           path={`${match.path}/:collectionId`}
           component={CollectionPage}
         />

@@ -38,8 +38,8 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
 firebase.initializeApp(config);
 
-export const convertCollectionSnapshotToMap = collectionsSnapshot => {
-  const transformedCollection = collectionsSnapshot.docs.map(doc => {
+export const convertCollectionSnapshotToMap = collections => {
+  const transformedCollection = collections.docs.map(doc => {
     const { title, items } = doc.data();
     return {
       //pass encodeUri = object = pass string an gives you back string that evrey url can read
@@ -50,7 +50,6 @@ export const convertCollectionSnapshotToMap = collectionsSnapshot => {
       items
     };
   });
-  console.log(transformedCollection)
   //pass in initial object indicated by {} at the end of the method
   //initial object goes into first new collection and sets the first value to title.tolowerccase = hats=hats.collection
   //goes to  second object = jackets = jackets.jacketscollection
