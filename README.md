@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+##NOTE TO USER RUNNING THIS: MUST SWITCH DATABASE AUTH TO if True within the auth section to start running
+
 ## To Deploy Use the Following:
 (base) tylers-mbp-2:crwn-clothing tyler$ git push heroku master
 
