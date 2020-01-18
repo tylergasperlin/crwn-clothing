@@ -23,17 +23,12 @@ export const fetchCollectionsFailure = errorMessage => ({
 //any time you attepmt to dispatch a function instead of an object
 //the middleware will call that function with dispatch method itself as the first argument
 export const fetchCollectionsStartAsync = () => {
-    console.log('6699')
-
   return dispatch => {
     const collectionRef = firestore.collection('collections');
     dispatch(fetchCollectionsStart());
-    console.log('1155')
-
     collectionRef
       .get()
       .then(snapshot => {
-          console.log('3322')
         const collectionsMap = convertCollectionSnapshotToMap(snapshot);
         dispatch(fetchCollectionsSuccess(collectionsMap));
       })
